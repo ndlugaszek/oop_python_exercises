@@ -4,11 +4,8 @@ import datetime
 
 
 class BankAccount:
-
-    # The __init__ method accepts an argument for
-    # the account's balance. It is assigned to
-    # the __balance attribute.
-
+    # The __init__ method creates an object with random account number, date of creation and status set to 'o' - opened.
+    # The parameters which the user need to input is the name of the customer and starting balance do the account
     def __init__(self, first_name, last_name, bal):
         self.__first_name = first_name
         self.__last_name = last_name
@@ -17,8 +14,7 @@ class BankAccount:
         self.__created_at = datetime.datetime.now()
         self.__status = 'o'
 
-    # The deposit method makes a deposit into the
-    # account.
+    # The deposit method makes a deposit into the account.
     def deposit(self, amount):
         good_value = False
         while good_value is not True:
@@ -29,8 +25,7 @@ class BankAccount:
                 print('Wrong input! Please, use only the digits!')
                 good_value = False
 
-    # The withdraw method withdraws an amount
-    # from the account.
+    # The withdraw method withdraws an amount from the account.
     def withdraw(self, amount):
         good_value = False
         while good_value is not True:
@@ -44,8 +39,7 @@ class BankAccount:
                 print('Wrong input! Please, use only the digits!')
                 good_value = False
 
-    # The get_balance method returns the
-    # account balance.
+    # The getters methods returns the account information
     def get_first_name(self):
         return self.__first_name
 

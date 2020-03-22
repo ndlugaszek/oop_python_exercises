@@ -80,7 +80,7 @@ def read_write_csv_file():
     csv_file = open('bank_account.csv', 'w')
 
     with csv_file:
-        # Crete the fields name in the csv file
+        # Crete and set the fields name in the csv file
         field_names = ['Imie', 'Nazwisko', 'Numer_rachunku', 'Saldo', 'Data_otwarcia', 'Status']
         writer = csv.DictWriter(csv_file, fieldnames=field_names)
         writer.writeheader()
@@ -90,6 +90,7 @@ def read_write_csv_file():
             writer.writerow(create_data(customer))
             again = input('Do you want to add next customer(y/n)? ')
         csv_file.close()
+        # Open the file in the read mode
         csv_file = open('bank_account.csv', 'r')
         reader = csv.DictReader(csv_file)
         for row in reader:
@@ -100,17 +101,20 @@ def read_write_csv_file():
 # The method which writes and reads data to the PICKLE file
 def read_write_pickle_file():
     again_pickle = 'y'
+    # Open the PICKLE file in write mode
     bin_file = open('bank_accounts', 'wb')
     bank_account_data = {}
 
     while again_pickle.lower() == 'y':
-        customer_data = create_data(create_customer())
-        bank_account_data.update(customer_data)
+        # Create the customer and write it to the file
+        bank_account_data.update(create_data(create_customer()))
         pickle.dump(bank_account_data, bin_file)
         again_pickle = input('Do you want to add next customer(y/n)? ')
     bin_file.close()
+    # Open the PICKLE file in read mode
     bin_file = open('bank_accounts', 'rb')
     end_of_file = False
+    # Print all the objects from the file
     while not end_of_file:
         try:
             print(pickle.load(bin_file))
